@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudioArs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./web/style.css">
+    <title>StudioArs</title>
+    <script src="./web/onLoad.js" defer></script>
+    <script src="./web/Remove.js" defer></script>
+    <script src="./web/Edit.js" defer></script>
+
+
+</head>
+
+<body>
+
+
+    <div class="wrapper">
+        <div class="container">
+            <h3 class="welcomer">Welcome to simple elements manager by Sniezka</h3>
+            <h3>Login or signup to browse/search</h3>
+            <!-- <button type="submit" class="addUser">addUser</button> -->
+            <!-- <button type="submit" class="login">login</button> -->
+            <div class="row basic">
+                <div class="col-2">method</div>
+                <div class="col-4">login</div>
+                <div class="col-4">password</div>
+                <div class="col-2">confirm</div>
+            </div>
+            <div class="row basic">
+                <div class="col-2"><select class="method">
+                        <option>login</option>
+                        <option>signup</option>
+                    </select></div>
+                <div class="col-4"><input type="text" class="userLogin"></div>
+                <div class="col-4"><input type="password" class="userPassword"></div>
+                <div class="col-2"><button class='confirm'>Let's gooo</button></div>
+            </div>
+        </div>
+        <br> <br>
+        <div class="container">
+            <div class="row basic">
+                <div class="col-3">Find elements by TYPE</div>
+                <div class="col-5"><input type='text' class='findByType'></div>
+                <div class="col-2"><button type="submit" class="search">search</button></div>
+                <div class="col-2"><button type="submit" class="reset">reset</button></div>
+            </div>
+        </div>
+        <br> <br>
+        <div class="container data">
+            <div class="row basic">
+                <div class="col-2">id</div>
+                <div class="col-2">type</div>
+                <div class="col-4">description</div>
+                <div class="col-2">timestamp</div>
+                <div class="col-2">delete</div>
+            </div>
+            <div class="elements">
+
+            </div>
+        </div>
+
+        <div class="container records">
+            <div class="row addevent">
+                <div class="col">Add New Record</div>
+            </div>
+            <div class="row addselection">
+                <div class="col-2"></div>
+                <div class="col-2"><select class="type" style="max-width: 100%">
+                        <option>długopisy</option>
+                        <option>drukarki</option>
+                        <option>traktory</option>
+                        <option>akumulatory</option>
+                        <option>okna</option>
+                        <option>komputery</option>
+                        <option>lokale biurowe</option>
+                    </select></div>
+                <div class="col-4"><input type='text' class="description"></div>
+                <div class="col-2"></div>
+
+                <div class="col-2"><button type='submit' class="addRecord"><img src='img/faja.png'></button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./web/Communication.js" defer></script>
+    <script src="./web/Utils.js" defer></script>
+</body>
+
+</html>
