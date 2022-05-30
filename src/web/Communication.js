@@ -1,106 +1,100 @@
-window.onload = () => {
+const displayAfterLogin = () => {
+  const options = {
+    method: "GET",
+  };
 
-    const options = {
-        method: "GET",
-    };
+  fetch("/loadElements", options)
+    .then((response) => response.json())
+    .then((data) => displayElements(data));
+};
 
-    fetch("/loadElements", options)
-        .then(response => response.json()) // konwersja na json
-        .then(data => displayElements(data) // dane odpowiedzi z serwera
-            .catch(error => console.log(error)));
-}
+document.querySelector(".confirm").addEventListener("click", () => {
+  const data = JSON.stringify({
+    method: document.querySelector(".method").value,
+    username: document.querySelector(".userLogin").value,
+    password: document.querySelector(".userPassword").value,
+  });
+  const options = {
+    method: "POST",
+    body: data,
+  };
 
+  fetch("/userUI", options)
+    .then((response) => response.json())
+    .then((data) => displayUser(data));
+});
 
-document.querySelector('.confirm').addEventListener('click', () => {
-    console.log('clicked')
-    const data = JSON.stringify({
-        method: document.querySelector('.method').value,
-        username: document.querySelector('.userLogin').value,
-        password: document.querySelector('.userPassword').value
+document.querySelector(".addRecord").addEventListener("click", () => {
+  if (role != "admin") {
+    alert(
+      "You are missing permissions to add elements, contact administrator."
+    );
+    displayAfterLogin();
+    return;
+  }
+  const data = JSON.stringify({
+    type: document.querySelector(".type").value,
+    description: document.querySelector(".description").value,
+  });
+  const options = {
+    method: "POST",
+    body: data,
+  };
 
-    })
-    const options = {
-        method: "POST",
-        body: data
-    };
+  fetch("/addRecord", options)
+    .then((response) => response.json())
+    .then((data) => reloadElements(data));
+});
 
-    fetch("/userUI", options)
-        .then(response => response.json()) // konwersja na json
-        .then(data => displayUser(data) // dane odpowiedzi z serwera
-            .catch(error => console.log(error)));
-})
+document.querySelector(".search").addEventListener("click", () => {
+  const data = JSON.stringify({
+    type: document.querySelector(".findByType").value,
+  });
+  const options = {
+    method: "POST",
+    body: data,
+  };
 
-document.querySelector('.addRecord').addEventListener('click', () => {
-    const data = JSON.stringify({
-        type: document.querySelector('.type').value,
-        description: document.querySelector('.description').value
-    })
-    const options = {
-        method: "POST",
-        body: data
-    };
+  fetch("/findByType", options)
+    .then((response) => response.json())
+    .then((data) => displayElements(data));
+});
+document.querySelector(".reset").addEventListener("click", () => {
+  const options = {
+    method: "POST",
+  };
 
-    fetch("/addRecord", options)
-        .then(response => response.json()) // konwersja na json
-        .then(data => reloadElements(data) // dane odpowiedzi z serwera
-            .catch(error => console.log(error)));
-})
-
-document.querySelector('.search').addEventListener('click', () => {
-    const data = JSON.stringify({
-        type: document.querySelector('.findByType').value,
-    })
-    const options = {
-        method: "POST",
-        body: data
-    };
-
-    fetch("/findByType", options)
-        .then(response => response.json()) // konwersja na json
-        .then(data => displayElements(data) // dane odpowiedzi z serwera
-            .catch(error => console.log(error)));
-})
-document.querySelector('.reset').addEventListener('click', () => {
-
-    const options = {
-        method: "POST",
-    };
-
-    fetch("/reset", options)
-        .then(response => response.json()) // konwersja na json
-        .then(data => reloadElements(data) // dane odpowiedzi z serwera
-            .catch(error => console.log(error)));
-})
+  fetch("/reset", options)
+    .then((response) => response.json())
+    .then((data) => reloadElements(data));
+});
 
 const removeElement = (elementId) => {
-    const data = JSON.stringify({
-        id: elementId
-    })
-    const options = {
-        method: "POST",
-        body: data
-    };
+  const data = JSON.stringify({
+    id: elementId,
+  });
+  const options = {
+    method: "POST",
+    body: data,
+  };
 
-    fetch("/removeElement", options)
-        .then(response => response.json()) // konwersja na json
-        .then(data => reloadElements(data) // dane odpowiedzi z serwera
-            .catch(error => console.log(error)));
-}
-
+  fetch("/removeElement", options)
+    .then((response) => response.json())
+    .then((data) => reloadElements(data));
+};
 
 const adjustElement = (newType, newDescription, id) => {
-    const data = JSON.stringify({
-        id: id,
-        type: newType,
-        description: newDescription
-    })
-    const options = {
-        method: "POST",
-        body: data
-    };
+  const data = JSON.stringify({
+    id: id,
+    type: newType,
+    description: newDescription,
+  });
+  const options = {
+    method: "POST",
+    body: data,
+  };
 
-    fetch("/adjustElement", options)
-        .then(response => response.json()) // konwersja na json
-        .then(data => reloadElements(data) // dane odpowiedzi z serwera
-            .catch(error => console.log(error)));
-}
+  fetch("/adjustElement", options)
+    .then((response) => response.json())
+    .then((data) => reloadElements(data));
+};
