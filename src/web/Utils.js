@@ -15,7 +15,7 @@ const reloadElements = () => {
 const displayUser = (data) => {
   username = data.username;
   if (username == undefined) {
-    alert("User does not exist.");
+    alert("User does not exist or password is invalid.");
     return;
   }
   role = data.role;
@@ -23,11 +23,4 @@ const displayUser = (data) => {
   welcomerCont.innerText = `Hi ${username}, nice to see you :)`;
   alert(`Hi ${username}, nice to see you :)`);
   displayAfterLogin();
-};
-
-const removeEditListner = () => {
-  const removeButtons = document.querySelectorAll(".u");
-  for (let i = 0; i < removeButtons.length; i++) {
-    removeButtons[i].removeEventListener("click", edit());
-  }
 };

@@ -9,7 +9,6 @@ const editElement = () => {
           alert(
             "You are missing permissions to edit elements, contact administrator."
           );
-          displayAfterLogin();
           return;
         }
         const typeCont = elements[i].childNodes[1];
